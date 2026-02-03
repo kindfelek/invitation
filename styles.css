@@ -1,0 +1,329 @@
+/* ========================================
+   RESET & BASE STYLES
+   ======================================== */
+
+/* Zmienne CSS - kolory */
+:root {
+    --color-primary: #7B1B38;      /* Główny kolor - ciemne bordo */
+    --color-secondary: #B4697A;    /* Akcentowy - jaśniejsze bordo */
+    --color-background: #FAF9F6;   /* Tło - ciepła biel */
+    --color-accent: #FF6B9D;       /* Akcent - różowy (języczek, efekty) */
+    --color-light: #D4A5AB;        /* Jasny odcień - detale */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Fuzzy Bubbles', cursive;
+    background: var(--color-background);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden; /* Żeby przyciski nie powodowały scrollowania */
+}
+
+/* ========================================
+   LAYOUT - GŁÓWNY KONTENER
+   ======================================== */
+.container {
+    width: 100%;
+    max-width: 600px;
+    padding: 40px 20px;
+    text-align: center;
+}
+
+/* ========================================
+   SEKCJA TEKSTOWA
+   ======================================== */
+.text-section {
+    height: 150px; /* Stała wysokość zamiast min-height */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: end;
+}
+
+.main-text {
+    color: var(--color-primary);
+    font-size: 48px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    user-select: none; /* Żeby nie podświetlało się przy klikaniu */
+}
+
+.main-text:hover {
+    color: var(--color-secondary);
+    transform: scale(1.05);
+}
+
+.main-text:active {
+    transform: scale(0.95);
+}
+
+/* Stan gdy pokazujemy pełne pytanie (bez kursora klikania) */
+.main-text.heartbeat {
+    animation: heartbeat 2s ease-in-out infinite;
+}
+
+.main-text.full-question:hover {
+    transform: none;
+    color: var(--color-primary);
+}
+
+@keyframes heartbeat {
+    0% {
+        transform: scale(1);
+    }
+    10% {
+        transform: scale(1.05);
+    }
+    20% {
+        transform: scale(1);
+    }
+    30% {
+        transform: scale(1.05);
+    }
+    40% {
+        transform: scale(1);
+    }
+    /* Pauza do końca */
+    100% {
+        transform: scale(1);
+    }
+}
+
+.hint {
+    color: var(--color-secondary);
+    font-size: 16px;
+    margin-top: 10px;
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+    user-select: none;
+}
+
+.hint.hidden {
+    opacity: 0;
+    display: none;
+}
+
+/* ========================================
+   SEKCJA PIESKA (PLACEHOLDER)
+   ======================================== */
+.dog-section {
+    margin: 40px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+}
+
+#dog-placeholder {
+    transition: transform 0.3s ease;
+}
+
+/* Animacja dla radości (po kliknięciu TAK) */
+#dog-placeholder.dog-happy {
+    animation: bounce 0.6s ease-in-out infinite;
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-30px);
+    }
+}
+
+/* Animacja dla smutku (po hoverze na NIE) */
+#dog-placeholder.dog-sad {
+    animation: wiggle 0.4s ease-in-out;
+}
+
+@keyframes droop {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(10px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+/* Animacja dla zainteresowania (po hoverze na TAK) */
+#dog-placeholder.dog-excited {
+    animation: droop 0.4s ease-in-out;
+}
+
+@keyframes wiggle {
+    0%, 100% {
+        transform: rotate(0deg);
+    }
+    25% {
+        transform: rotate(-5deg);
+    }
+    75% {
+        transform: rotate(5deg);
+    }
+}
+
+/* ========================================
+   PRZYCISKI
+   ======================================== */
+.buttons-section {
+    margin-top: 40px;
+    height: 80px; /* Stała wysokość - zawsze zajmuje miejsce */
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    opacity: 0; /* Ukryte na początku */
+    pointer-events: none; /* Nie można klikać gdy niewidoczne */
+    transition: opacity 0.5s ease;
+}
+
+.buttons-section.visible {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.btn {
+    font-family: 'Fuzzy Bubbles', cursive;
+    padding: 15px 50px;
+    border-radius: 30px;
+    border: none;
+    font-size: 28px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.btn-yes {
+    background: var(--color-primary);
+    color: white;
+}
+
+.btn-yes:hover {
+    background: #5a1429; /* Ciemniejszy odcień primary */
+    transform: scale(1.1);
+    animation: pulse 0.8s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1.1);
+    }
+    50% {
+        transform: scale(1.15);
+    }
+}
+
+.btn-yes:active {
+    transform: scale(1.05);
+}
+
+.btn-no {
+    background: var(--color-secondary);
+    color: white;
+    position: relative; /* Dla późniejszej absolutnej pozycji */
+    transition: all 0.2s ease;
+}
+
+/* Klasa dla "uciekającego" przycisku */
+.btn-no.escaping {
+    position: fixed; /* Zmienia się na fixed żeby mógł uciekać */
+    animation: tremble 0.1s ease-in-out infinite;
+}
+
+@keyframes tremble {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    25% {
+        transform: translateX(-2px);
+    }
+    75% {
+        transform: translateX(2px);
+    }
+}
+
+.btn-no:hover:not(.escaping) {
+    background: #965666; /* Ciemniejszy odcień secondary */
+}
+
+/* ========================================
+   KOMUNIKAT KOŃCOWY
+   ======================================== */
+.success-message {
+    margin-top: 40px;
+    animation: fadeInScale 0.6s ease-in-out;
+    user-select: none;
+    animation: heartbeat 2s ease-in-out infinite;
+}
+
+@keyframes fadeInScale {
+    0% {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.celebration {
+    color: var(--color-primary);
+    font-size: 64px;
+    font-weight: 700;
+    animation: rainbow 2s ease-in-out infinite;
+}
+
+@keyframes rainbow {
+    0%, 100% {
+        color: var(--color-primary);
+    }
+    33% {
+        color: var(--color-secondary);
+    }
+    66% {
+        color: var(--color-accent);
+    }
+}
+
+/* ========================================
+   RESPONSIVE
+   ======================================== */
+@media (max-width: 600px) {
+    .main-text {
+        font-size: 36px;
+    }
+
+    .main-text.full-question {
+        font-size: 28px;
+    }
+
+    .btn {
+        padding: 12px 40px;
+        font-size: 24px;
+    }
+
+    .celebration {
+        font-size: 48px;
+    }
+
+    #dog-placeholder {
+        width: 150px;
+        height: 150px;
+    }
+}

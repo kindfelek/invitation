@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Walentynkowe Zaproszenie 💕</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fuzzy+Bubbles:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="container">
+    <!-- Sekcja na tekst do przeklikiwania -->
+    <div class="text-section">
+        <p id="clickable-text" class="main-text">Julcia...</p>
+        <p class="hint">(klik klik żeby kontynuować)</p>
+    </div>
+
+    <!-- Placeholder pieska -->
+    <div class="dog-section">
+        <svg id="dog-placeholder" width="200" height="200" viewBox="0 0 200 200">
+            <!-- Prosty okrąg jako placeholder -->
+            <circle cx="100" cy="100" r="80" fill="#B4697A" />
+
+            <!-- Tekst w środku dla cute factor -->
+            <text x="100" y="115" font-size="60" text-anchor="middle" fill="#7B1B38">🐶</text>
+        </svg>
+    </div>
+
+    <!-- Przyciski (niewidoczne na początku) -->
+    <div class="buttons-section" id="buttons-section">
+        <button id="btn-yes" class="btn btn-yes">TAK ❤️</button>
+        <button id="btn-no" class="btn btn-no">Nie</button>
+    </div>
+
+    <!-- Komunikat końcowy (ukryty na początku) -->
+    <div class="success-message" id="success-message" style="display: none;">
+        <p class="celebration">Jeeeej! ❤️</p>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
