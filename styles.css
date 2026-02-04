@@ -259,14 +259,6 @@ body {
     background: #965666; /* Ciemniejszy odcień secondary */
 }
 
-.btn-no:hover.escaping {
-    background: var(--color-secondary); /* Taki sam kolor */
-}
-
-.btn-no:focus.escaping {
-    background: var(--color-secondary); /* Taki sam kolor */
-}
-
 /* ========================================
    KOMUNIKAT KOŃCOWY
    ======================================== */
