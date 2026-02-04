@@ -52,6 +52,9 @@ function showFullQuestion() {
     // Zmieniamy tekst na pełne pytanie
     clickableText.textContent = "Julcia, czy zostaniesz moją walentynką? 🌹";
 
+    // Dodajemy heartbeat
+    clickableText.classList.add('heartbeat');
+
     // Ukrywamy hint
     hint.classList.add('hidden');
 

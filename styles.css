@@ -56,8 +56,6 @@ body {
     cursor: pointer;
     transition: all 0.3s ease;
     user-select: none; /* Żeby nie podświetlało się przy klikaniu */
-
-    animation: heartbeat 2s ease-in-out infinite;
 }
 
 .main-text:hover {
@@ -72,6 +70,10 @@ body {
 .main-text.full-question:hover {
     transform: none;
     color: var(--color-primary);
+}
+
+.main-text.heartbeat {
+    animation: heartbeat 2s ease-in-out infinite;
 }
 
 @keyframes heartbeat {
