@@ -52,9 +52,6 @@ function showFullQuestion() {
     // Zmieniamy tekst na pełne pytanie
     clickableText.textContent = "Julcia, czy zostaniesz moją walentynką? 🌹";
 
-    // Dodajemy klasę CSS (zmienia wygląd - mniejszy font, brak hover effect)
-    clickableText.classList.add('heartbeat');
-
     // Ukrywamy hint
     hint.classList.add('hidden');
 
